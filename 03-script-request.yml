@@ -1,0 +1,29 @@
+info:
+  name: 03-script-request
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseURL}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        const body = {
+          name: "Bruno",
+          msg: "I love opensource devtools"
+        };
+
+        req.setHeader("Content-Type", "application/json");
+        req.setBody(body);
+
+        console.log(req.getName(), req);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
